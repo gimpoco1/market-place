@@ -8,7 +8,7 @@ import Button from "../components/Button";
 import Link from "next/link";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { signIn } from "next-auth/react";
-import toast from "react-hot-toast";
+import {toast} from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { SafeUser } from "@/types";
 
