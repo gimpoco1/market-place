@@ -45,14 +45,7 @@ const CheckoutClient = () => {
 					if (res.status === 401) {
 						return router.push("/login");
 					}
-					if (
-						res.ok &&
-						res.headers.get("content-type")?.includes("application/json")
-					) {
-						return res.json();
-					} else {
-						throw new Error("Response not JSON");
-					}
+					return res.json();
 				})
 				.then((data) => {
 					setClientSecret(data.paymentIntent.client_secret);
@@ -64,7 +57,7 @@ const CheckoutClient = () => {
 					toast.error("Something went wrong. Please try again.");
 				});
 		}
-	}, [cartProducts, paymentIntent]);
+	}, [cartProducts, paymentIntent, handleSetPaymentIntent, router]);
 
 	const options: StripeElementsOptions = {
 		clientSecret,

@@ -8,6 +8,7 @@ import { useCart } from "@/hooks/useCart";
 import { Rating } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { MdCheckCircle } from "react-icons/md";
 
 interface ProductDetailsProps {
@@ -63,7 +64,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 				setIsProductInCart(true);
 			}
 		}
-	}, [cartProducts]);
+	}, [cartProducts, product.id]);
 
 	const productRating =
 		product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
@@ -78,11 +79,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 				};
 			});
 		},
-		[cartProduct.selectedImg]
+		[ cartProduct] 
 	);
 
 	const handleQtyIncrease = useCallback(() => {
-		if (cartProduct.quantity === 99) return;
+		if (cartProduct.quantity === 99) {
+			return toast.error("Maximum quantity reached.");
+		};
 
 		setCartProduct((prev) => {
 			return {
@@ -93,7 +96,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 	}, [cartProduct]);
 
 	const handleQtyDecrease = useCallback(() => {
-		if (cartProduct.quantity === 1) return;
+		if (cartProduct.quantity === 1) {
+			return toast.error("Minimum quantity reached.");
+		};
 
 		setCartProduct((prev) => {
 			return {
@@ -162,7 +167,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 						<div className="max-w-[300px]">
 							<Button
 								label="Add To Cart"
-								onClick={() => handleAddProductToCart(cartProduct)}
+								onClick={() => {
+									handleAddProductToCart(cartProduct)
+								}
+							}
+
 							/>
 						</div>
 					</>

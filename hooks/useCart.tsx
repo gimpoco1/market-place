@@ -70,17 +70,19 @@ export const CartContextProvider = (props: Props) => {
 
 	const handleAddProductToCart = useCallback((product: CartProduct) => {
 		setCartProducts((prev) => {
-			let updatedCart;
-			if (prev) {
-				updatedCart = [...prev, product];
-			} else {
-				updatedCart = [product];
-			}
-			toast.success("Product added to cart");
-			localStorage.setItem("TIcartItems", JSON.stringify(updatedCart));
-			return updatedCart;
+		  let updatedCart;
+		  if (prev) {
+			updatedCart = [...prev, product];
+		  } else {
+			updatedCart = [product];
+		  }
+		  localStorage.setItem("TIcartItems", JSON.stringify(updatedCart));
+		  return updatedCart;
 		});
-	}, []);
+		 
+		toast.success('Product added to cart'); 
+	  }, []);
+	  
 
 	const handleRemoveProductFromCart = useCallback(
 		(product: CartProduct) => {
