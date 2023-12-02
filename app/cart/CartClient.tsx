@@ -7,9 +7,16 @@ import Heading from "../components/Heading";
 import Button from "../components/Button";
 import ItemContent from "./ItemContent";
 import { formatPrice } from "@/utils/formatPrice";
+import { SafeUser } from "@/types";
+import { useRouter } from "next/navigation";
 
-const CartClient = () => {
+interface CartClientProp {
+	currentUser: SafeUser | null;
+}
+
+const CartClient: React.FC<CartClientProp> = ({ currentUser }) => {
 	const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
+	const router = useRouter();
 
 	if (!cartProducts || cartProducts.length === 0)
 		return (
@@ -39,15 +46,19 @@ const CartClient = () => {
 			<div>
 				{cartProducts &&
 					cartProducts.map((item) => {
-						return <ItemContent key={item.id} item={item}/>;
+						return <ItemContent key={item.id} item={item} />;
 					})}
 			</div>
 			<div className="border-t-[1.5px] border-slate-200 py-4 flex justify-between gap-4">
-				
-                <div className="w-[90px]">
-					<Button label="Clear Cart" onClick={() => {
-                        handleClearCart()
-                    }} small outline />
+				<div className="w-[90px]">
+					<Button
+						label="Clear Cart"
+						onClick={() => {
+							handleClearCart();
+						}}
+						small
+						outline
+					/>
 				</div>
 
 				<div className="text-sm flex flex-col gap-1 items-start">
@@ -58,8 +69,15 @@ const CartClient = () => {
 					<p className="text-slate-500">
 						Taxes and Shipping calculate at checkout
 					</p>
-                    <Button label="Checkout" onClick={() => {}} small />
-                    <Link
+					<Button
+						label={currentUser ? "Checkout" : "Login to Checkout"}
+						outline={currentUser ? false : true}
+						onClick={() => {
+							currentUser ? router.push("/checkout") : router.push("/login");
+						}}
+						small
+					/>
+					<Link
 						href="/"
 						className=" text-slate-500 flex items-center gap-1 mt-2"
 					>

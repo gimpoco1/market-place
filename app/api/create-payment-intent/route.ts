@@ -1,20 +1,21 @@
 import Stripe from "stripe";
 import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
-import { CartProductType } from "@/app/product/[productId]/ProductDetails";
+import { CartProduct } from "@/app/product/[productId]/ProductDetails";
 import  getCurrentUser from "@/actions/getCurrentUser";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 	apiVersion: "2023-10-16",
 });
 
-const calculateOrderAmount = (items: CartProductType[]) => {
+const calculateOrderAmount = (items: CartProduct[]) => {
 	const totalPrice = items.reduce((acc, item) => {
 		const itemTotal = item.price * item.quantity;
 		return acc + itemTotal;
 	}, 0);
 
-	return totalPrice;
+
+	return Number(totalPrice.toFixed(2));
 };
 
 export async function POST(request: Request) {

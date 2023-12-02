@@ -14,7 +14,7 @@ interface ProductDetailsProps {
 	product: any;
 }
 
-export type CartProductType = {
+export type CartProduct = {
 	id: string;
 	name: string;
 	description: string;
@@ -38,7 +38,7 @@ const Horizontal = () => {
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 	const { handleAddProductToCart, cartProducts } = useCart();
 	const [isProductInCart, setIsProductInCart] = useState(false);
-	const [cartProduct, setCartProduct] = useState<CartProductType>({
+	const [cartProduct, setCartProduct] = useState<CartProduct>({
 		id: product.id,
 		name: product.name,
 		description: product.description,

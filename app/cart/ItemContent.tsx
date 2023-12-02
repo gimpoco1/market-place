@@ -1,7 +1,7 @@
 "use client";
 
 import { formatPrice } from "@/utils/formatPrice";
-import { CartProductType } from "../product/[productId]/ProductDetails";
+import { CartProduct } from "../product/[productId]/ProductDetails";
 import Link from "next/link";
 import { truncateText } from "@/utils/truncateText";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import { useCart } from "@/hooks/useCart";
 
 
 interface ItemContentProps {
-	item: CartProductType;
+	item: CartProduct;
 }
 
 const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
@@ -24,6 +24,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
 						<Image
 							src={item.selectedImg.image}
 							alt={item.name}
+							sizes='100%'
 							fill
 							className="object-contain"
 						/>

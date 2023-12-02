@@ -19,6 +19,8 @@ const HomeBanner = () => {
 					<Image
 						src="/banner-image.png"
 						fill
+						priority
+						sizes="100%"
 						alt="Banner Image"
 						className="object-contain"
 					/>
