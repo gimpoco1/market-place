@@ -18,11 +18,13 @@ const Navbar = async () => {
 					<div className="flex item-center justify-between gap-3 md:gap-0">
 						<Link href="/">
 						<Image src="/logo.png"
-						width= {150}
-						height=  {150}
-						sizes="50%"
+						width= {200}
+						height={200}
+						priority
+						quality={100}
+						sizes="100%"
 						alt="Treasure Island Logo"
-						className="h-20 md:h-28 rounded-md"
+						className="h-30 md:h-30 rounded-md cursor-pointer hover:opacity-80 transition duration-300 ease-in-out"
 						/>
 						</Link>
 						<div className="hidden md:block text-white mt-10">Search</div>
