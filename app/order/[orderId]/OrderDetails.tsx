@@ -6,8 +6,8 @@ import Heading from "@/app/components/Heading";
 import { formatPrice } from "@/utils/formatPrice";
 import Status from "@/app/components/Status";
 import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from "react-icons/md";
-// import { useEffect } from "react";
-// import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import moment from "moment";
 
 interface OrderDetailsProps {
@@ -15,11 +15,11 @@ interface OrderDetailsProps {
 }
 
 const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
-  // const router = useRouter();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   router.refresh();
-  // }, []);
+  useEffect(() => {
+    router.refresh();
+  }, []);
 
   return (
     <div className="max-w-[1150px] m-auto flex flex-col gap-2">
@@ -101,7 +101,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
         </div>
         <div>
           {order.products &&
-            order.products.map((item) => {
+            order.products.map((item: any) => {
               return <OrderItem key={item.id} item={item} />;
             })}
         </div>

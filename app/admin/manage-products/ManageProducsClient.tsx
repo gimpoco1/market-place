@@ -138,6 +138,9 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   }, []);
 
   const handleDelete = useCallback(async (id: string, images: any[]) => {
+    toast("Deleting product, please wait!", {
+      icon: "🔃",
+    });
 
     const handleImageDelete = async () => {
       try {
@@ -176,10 +179,10 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
           columns={columns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 9 },
+              paginationModel: { page: 0, pageSize: 10 },
             },
           }}
-          pageSizeOptions={[9, 20]}
+          pageSizeOptions={[10, 20]}
           checkboxSelection
           disableRowSelectionOnClick
         />

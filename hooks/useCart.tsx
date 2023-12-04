@@ -9,21 +9,21 @@ import {
 import {toast} from "react-hot-toast";
 
 type CartContextType = {
-	cartTotalQty: number;
-	cartTotalAmount: number;
 	cartProducts: CartProduct[] | null;
 	handleAddProductToCart: (product: CartProduct) => void;
 	handleRemoveProductFromCart: (product: CartProduct) => void;
 	handleCartQtyIncrease: (product: CartProduct) => void;
 	handleCartQtyDecrease: (product: CartProduct) => void;
 	handleClearCart: () => void;
+	cartTotalQty: number;
+	cartTotalAmount: number;
 	paymentIntent: string | null;
-	handleSetPaymentIntent: (value: string | null) => void;
-};
+	handleSetPaymentIntent: (val: string | null) => void;
+  };
 
 export const CartContext = createContext<CartContextType | null>(null);
 
-interface Props {
+export interface Props {
 	[propName: string]: any;
 }
 
@@ -33,14 +33,13 @@ export const CartContextProvider = (props: Props) => {
 	const [cartProducts, setCartProducts] = useState<CartProduct[] | null>(
 		null
 	);
-
 	const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
 	useEffect(() => {
 		const cartItems = localStorage.getItem("TIcartItems");
 		const cProducts: CartProduct[] | null = JSON.parse(cartItems!);
-		const eShopPaymentIntent = localStorage.getItem("eShopPaymentIntent");
-		const paymentIntent: string | null = JSON.parse(eShopPaymentIntent!);
+		const eShopPaymentIntent: any= localStorage.getItem("eShopPaymentIntent");
+		const paymentIntent: string | null = JSON.parse(eShopPaymentIntent);
 
 		setCartProducts(cProducts);
 		setPaymentIntent(paymentIntent);
@@ -48,25 +47,29 @@ export const CartContextProvider = (props: Props) => {
 
 	useEffect(() => {
 		const getTotals = () => {
-			if (cartProducts) {
-				const { total, quantity } = cartProducts?.reduce(
-					(acc, item) => {
-						const itemTotal = item.price * item.quantity;
-
-						acc.total += itemTotal;
-						acc.quantity += item.quantity;
-
-						return acc;
-					},
-					{ total: 0, quantity: 0 }
-				);
-				setCartTotalQty(quantity);
-				setCartTotalAmount(total);
-			}
+		  if (cartProducts) {
+			const { total, qty } = cartProducts.reduce(
+			  (acc, item) => {
+				const itemTotal = item.price * item.quantity;
+	
+				acc.total += itemTotal;
+				acc.qty += item.quantity;
+	
+				return acc;
+			  },
+			  {
+				total: 0,
+				qty: 0,
+			  }
+			);
+	
+			setCartTotalAmount(parseFloat(total.toFixed(2)));
+			setCartTotalQty(qty);
+		  }
 		};
-
+	
 		getTotals();
-	}, [cartProducts]);
+	  }, [cartProducts]);
 
 	const handleAddProductToCart = useCallback((product: CartProduct) => {
 		setCartProducts((prev) => {
@@ -87,12 +90,12 @@ export const CartContextProvider = (props: Props) => {
 	const handleRemoveProductFromCart = useCallback(
 		(product: CartProduct) => {
 			if (cartProducts) {
-				const filteredProducts = cartProducts.filter((item) => {
+				const filteredProducts = cartProducts?.filter((item) => {
 					return item.id !== product.id;
 				});
 				setCartProducts(filteredProducts);
-				toast.success("Product removed");
 				localStorage.setItem("TIcartItems", JSON.stringify(filteredProducts));
+				toast.success("Product removed");
 			}
 		},
 		[cartProducts]
@@ -106,11 +109,11 @@ export const CartContextProvider = (props: Props) => {
 			}
 
 			if (cartProducts) {
-				updatedCart = [...cartProducts];
-
+				
 				const existingIndex = cartProducts.findIndex(
 					(item) => item.id === product.id
-				);
+					);
+					updatedCart = [...cartProducts];
 
 				if (existingIndex > -1) {
 					updatedCart[existingIndex].quantity =
@@ -130,11 +133,11 @@ export const CartContextProvider = (props: Props) => {
 			}
 
 			if (cartProducts) {
-				updatedCart = [...cartProducts];
-
+				
 				const existingIndex = cartProducts.findIndex(
 					(item) => item.id === product.id
-				);
+					);
+					updatedCart = [...cartProducts];
 
 				if (existingIndex > -1) {
 					updatedCart[existingIndex].quantity =
@@ -159,14 +162,14 @@ export const CartContextProvider = (props: Props) => {
 	}, [paymentIntent])
 
 	const value = {
-		cartTotalQty,
-		cartTotalAmount,
 		cartProducts,
 		handleAddProductToCart,
 		handleRemoveProductFromCart,
 		handleCartQtyIncrease,
 		handleCartQtyDecrease,
 		handleClearCart,
+		cartTotalQty,
+		cartTotalAmount,
 		paymentIntent,
 		handleSetPaymentIntent,
 	};

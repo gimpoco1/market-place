@@ -13,11 +13,11 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SafeUser } from "@/types";
 
-interface RegisterFormProps {
+interface RegisterUserProps {
 	currentUser: SafeUser | null;
 }
 
-const RegisterForm: React.FC<FieldValues> = ({ currentUser }) => {
+const RegisterForm: React.FC<RegisterUserProps> = ({ currentUser }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const {
 		register,
@@ -53,6 +53,8 @@ const RegisterForm: React.FC<FieldValues> = ({ currentUser }) => {
 					password: data.password,
 					redirect: false,
 				}).then((callback) => {
+					setIsLoading(false);
+
 					if (callback?.ok) {
 						router.push("/cart");
 						router.refresh();

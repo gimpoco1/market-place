@@ -27,6 +27,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 	const stripe = useStripe();
 	const elements = useElements();
 	const [isLoading, setIsLoading] = useState(false);
+
 	const formattedPrice = formatPrice(cartTotalAmount);
 
 	useEffect(() => {
@@ -67,7 +68,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 	return (
 		<form onSubmit={handleSubmit} id="payment-form">
 			<div className="mb-6">
-				<Heading title="Enter your details to complete checkout" />
+				<Heading title="Enter your details to complete checkout" center/>
 			</div>
 			<h2 className="font-semibold mb-2">Address Information</h2>
 			<AddressElement

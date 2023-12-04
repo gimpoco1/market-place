@@ -4,12 +4,18 @@ import Avatar from "@/app/components/Avatar";
 import Heading from "@/app/components/Heading";
 import { Rating } from "@mui/material";
 import moment from "moment";
+import { Product, Review } from "@prisma/client";
+
 
 interface ListRatingProps {
-	product: any;
-}
+	product: Product & {
+	  reviews: Review[];
+	};
+  }
 
 const ListRating: React.FC<ListRatingProps> = ({ product }) => {
+	if (!product.reviews || product.reviews.length === 0) return null;
+
 	return (
 		<div>
 			<Heading title="Product Review" />
@@ -19,7 +25,7 @@ const ListRating: React.FC<ListRatingProps> = ({ product }) => {
 						return (
 							<div key={review.id} className="max-w-[300px]">
 								<div className="flex gap-2 items-center">
-									<Avatar src={review.user.image} />
+									<Avatar src={review?.user.image} />
 									<div className="font-semibold">{review?.user.name}</div>
 									<div className="font-light">
 										{moment(review.createdDate).fromNow()}

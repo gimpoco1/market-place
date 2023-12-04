@@ -50,7 +50,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
     { field: "id", headerName: "Order ID", width: 220 },
     {
       field: "amount",
-      headerName: "Amount(USD)",
+      headerName: "Amount",
       width: 130,
       renderCell: (params) => {
         return (
@@ -158,10 +158,10 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
           columns={columns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 9 },
+              paginationModel: { page: 0, pageSize: 10 },
             },
           }}
-          pageSizeOptions={[9, 20]}
+          pageSizeOptions={[10, 20]}
           checkboxSelection
           disableRowSelectionOnClick
         />

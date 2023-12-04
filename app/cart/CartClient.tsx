@@ -78,7 +78,7 @@ const CartClient: React.FC<CartClientProp> = ({ currentUser }) => {
 						small
 					/>
 					<Link
-						href="/"
+						href={"/"}
 						className=" text-slate-500 flex items-center gap-1 mt-2"
 					>
 						<MdArrowBack />

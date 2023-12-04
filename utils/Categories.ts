@@ -7,7 +7,7 @@ import { GiCctvCamera } from "react-icons/gi";
 
 
 
-export const Categories = [
+export const categories = [
     {
         label: 'All',
         icon: MdStorefront
