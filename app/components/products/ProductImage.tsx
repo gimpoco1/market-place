@@ -55,7 +55,7 @@ import {
 				rounded
 				border-teal-300
 				${
-				  cartProduct.selectedImage.color === image.color
+				  cartProduct.selectedImg.color === image.color
 					? "border-[1.5px]"
 					: "border-none"
 				}
@@ -89,7 +89,7 @@ import {
 			  min-h-[300px]
 			  sm:min-h-[400px]
 			  "
-			src={cartProduct.selectedImage.image}
+			src={cartProduct.selectedImg.image}
 			alt={cartProduct.name}
 		  />
 		</div>

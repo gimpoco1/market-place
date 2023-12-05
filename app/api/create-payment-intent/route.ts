@@ -23,8 +23,13 @@ export async function POST(request: Request) {
 	  return NextResponse.json({ error: " Unauthorized" }, { status: 401 });
 	}
   
-	const body = await request.json();
-	const { items, payment_intent_id } = body;
+	let body;
+	try {
+	  body = await request.json();
+	} catch (error) {
+	  return NextResponse.json({ error: "Invalid JSON input" }, { status: 400 });
+	}
+	const { items, payment_intent_id , selectedImg} = body;
 	const total = calculateOrderAmount(items) * 100;
   
 	const orderData = {
@@ -35,8 +40,10 @@ export async function POST(request: Request) {
 	  deliveryStatus: "pending",
 	  paymentIntentId: payment_intent_id,
 	  products: items,
+	  selectedImg: selectedImg
 	};
   
+	console.log("orderData", orderData);
 	//Check if the payment intent exists just update the order
 	if (payment_intent_id) {
 	  const current_intent = await stripe.paymentIntents.retrieve(
@@ -74,7 +81,7 @@ export async function POST(request: Request) {
 	  //Create a new order with prisma
 	  const paymentIntent = await stripe.paymentIntents.create({
 		amount: total,
-		currency: "usd",
+		currency: "eur",
 		automatic_payment_methods: { enabled: true },
 	  });
   
@@ -85,4 +92,5 @@ export async function POST(request: Request) {
   
 	  return NextResponse.json({ paymentIntent });
 	}
+	return NextResponse.error()
   }

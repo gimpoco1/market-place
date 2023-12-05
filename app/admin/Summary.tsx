@@ -80,7 +80,7 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
   return (
     <div className="max-w-[1150px] m-auto">
       <div className="mb-4 mt-8">
-        <Heading title="Stats" center />
+        <Heading title="Statics" center />
       </div>
       <div className="grid grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
         {summaryKeys &&
@@ -100,7 +100,7 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
             >
               <div className="text-xl md:text-4xl font-bold">
                 {summaryData[key].label === "Total Sale" ? (
-                  <>{formatPrice(summaryData[key].digit)}</>
+                  <>{formatPrice(summaryData[key].digit / 100)}</>
                 ) : (
                   <>{formatNumber(summaryData[key].digit)}</>
                 )}

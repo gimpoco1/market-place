@@ -51,6 +51,7 @@ model Product{
   inStock Boolean
   images Image[]
   reviews Review[]
+  selectedImg Image?
 }
 
 model Review{
@@ -72,10 +73,11 @@ model Order {
   currency        String
   status          String
   deliveryStatus  String?
-  createDate      DateTime @default(now())
+  createDate      DateTime? @default(now())
   paymentIntentId String? @unique
   products CartProduct[]
   address Address?
+  selectedImg Image?
 
  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -86,7 +88,7 @@ type CartProduct  {
 	description String
 	category String
 	brand String
-	selectedImg Image
+	selectedImg Image?
 	quantity Int
 	price Float
 }

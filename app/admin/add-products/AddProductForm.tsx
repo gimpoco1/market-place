@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import Input from "@/app/components/inputs/Input";
 import Button from "@/app/components/Button";
-import { Categories } from "@/utils/Categories";
+import { categories } from "@/utils/Categories";
 import CategoryInput from "@/app/components/inputs/CategoriyInput";
 import TextArea from "@/app/components/inputs/TextArea";
 import SelectColor from "@/app/components/inputs/SelectColor";
@@ -111,7 +111,6 @@ const AddProductForm = () => {
 								(snapshot) => {
 									const progress =
 										(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-									console.log("Upload is " + progress + "% done");
 									switch (snapshot.state) {
 										case "paused":
 											break;
@@ -131,11 +130,9 @@ const AddProductForm = () => {
 												image: downloadURL,
 											});
 
-											console.log("File available at", downloadURL);
 											resolve();
 										})
 										.catch((error) => {
-											console.log("Error getting download URL", error);
 											reject(error);
 										});
 								}
@@ -145,7 +142,6 @@ const AddProductForm = () => {
 				}
 			} catch (error) {
 				setIsLoading(false);
-				console.log("Error handling image uploads", error);
 				return toast.error("An error occurred while handling image uploads");
 			}
 		};
@@ -233,7 +229,7 @@ const AddProductForm = () => {
 			<div className="w-full font-medium">
 				<div className="mb-2 font-semibold">Select a Category</div>
 				<div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
-					{Categories.map((item) => {
+					{categories.map((item) => {
 						if (item.label === "All") {
 							return null;
 						}

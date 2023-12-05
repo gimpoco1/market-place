@@ -35,7 +35,7 @@ const SetColor: React.FC<SetColorProps> = ({
             items-center
             justify-center
             ${
-              cartProduct.selectedImage.color === image.color
+              cartProduct.selectedImg.color === image.color
                 ? "border-[1.5px]"
                 : "border-none"
             }

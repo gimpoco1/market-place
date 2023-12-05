@@ -18,7 +18,7 @@ export type CartProduct = {
   description: string;
   category: string;
   brand: string;
-  selectedImage: SelectedImage;
+  selectedImg: SelectedImage;
   quantity: number;
   price: number;
 };
@@ -48,13 +48,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     description: product.description,
     category: product.category,
     brand: product.brand,
-    selectedImage: { ...product.images[0] },
+    selectedImg: { ...product.images[0] },
     quantity: 1,
     price: product.price,
   });
   const router = useRouter();
-
-  console.log(product);
 
   useEffect(() => {
     setIsProductInCart(false);
@@ -73,10 +71,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const handleColorSelect = useCallback(
     (value: SelectedImage) => {
       setCartProduct((prev) => {
-        return { ...prev, selectedImage: value };
+        return { ...prev, selectedImg: value };
       });
     },
-    [cartProduct.selectedImage]
+    [cartProduct.selectedImg]
   );
 
   const handleQtyIncrease = useCallback(() => {
@@ -85,7 +83,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     }
 
     setCartProduct((prev) => {
-      return { ...prev, quantity: ++prev.quantity };
+      return { ...prev, quantity: prev.quantity + 1 };
     });
   }, [cartProduct]);
 
@@ -95,7 +93,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     }
 
     setCartProduct((prev) => {
-      return { ...prev, quantity: --prev.quantity };
+      return { ...prev, quantity: prev.quantity - 1};
     });
   }, [cartProduct]);
 
@@ -111,9 +109,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         handleColorSelect={handleColorSelect}
       />
       <div className="flex flex-col gap-1 text-slate-500 text-sm">
-        <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
-        <div className="text-3xl font-semibold text-slate-700">
-          ${product.price}
+        <h2 className="text-4xl font-medium text-slate-700">{product.name}</h2>
+        <div className="text-2xl font-semibold text-slate-700">
+          €{product.price}
         </div>
         <div className="flex items-center gap-2">
           <Rating value={ProductRating} readOnly />

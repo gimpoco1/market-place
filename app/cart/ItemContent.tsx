@@ -25,7 +25,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
 				<Link href={`/product/${item.id}`}>
 					<div className="relative w-[70px] aspect-square">
 						<Image
-							src={item.selectedImage.image}
+							src={item.selectedImg.image}
 							alt={item.name}
 							sizes="100%"
 							fill
@@ -35,7 +35,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
 				</Link>
 				<div className="flex flex-col justify-between">
 					<Link href={`/product/${item.id}`}>{truncateText(item.name)}</Link>
-					<div>{item.selectedImage.color}</div>
+					<div>{item.selectedImg.color}</div>
 					<div className="w-[70px]">
 						<button
 							className="text-slate-500 underline"

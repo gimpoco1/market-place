@@ -8,7 +8,7 @@ const Orders = async() => {
 
     const user = await getCurrentUser();
     if (!user) {
-      return <NullData title="Oops! Access denied." />;
+      return <NullData title="Log in to see your Orders" />;
     }
   
     const orders = await getOrdersByUserId(user.id);

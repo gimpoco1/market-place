@@ -18,7 +18,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   data,
   shuffledProducts,
 }) => {
-  console.log("shuffledProducts", shuffledProducts);
   const router = useRouter();
 
   const ProductRating =

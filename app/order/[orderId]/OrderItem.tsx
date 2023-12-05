@@ -32,15 +32,13 @@ const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
             "
         >
           <Image
-            src={item.selectedImg.image}
+            src={item.selectedImg?.image}
             alt={item.name}
             fill
             className="object-contain"
           />
-        </div>
-        <div className="flex flex-col gap-1">
           <div>{truncateText(item.name)}</div>
-          <div>{item.selectedImg.color}</div>
+          <div>{item.selectedImg?.color}</div>
         </div>
       </div>
       <div className="justify-self-center">{formatPrice(item.price)}</div>
