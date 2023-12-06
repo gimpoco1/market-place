@@ -5,6 +5,7 @@ import UserMenu from "./UserMenu";
 import Image from "next/image";
 import { SafeUser } from "@/types";
 import SearchBar from "./SearchBar";
+import Categories from "./Categories";
 
 
 interface NavBarProps {
@@ -26,7 +27,7 @@ const Navbar: React.FC<NavBarProps> = ({ currentUser }) => {
 								quality={100}
 								sizes="100%"
 								alt="Treasure Island Logo"
-								className="h-30 md:h-30 rounded-md cursor-pointer hover:opacity-80 transition duration-300 ease-in-out"
+								className="h-30 pl-10 md:h-30 rounded-md cursor-pointer hover:opacity-80 transition duration-300 ease-in-out"
 							/>
 						</Link>
 						<div className="hidden md:block">
@@ -39,6 +40,7 @@ const Navbar: React.FC<NavBarProps> = ({ currentUser }) => {
 					</div>
 				</Container>
 			</div>
+			<Categories />	
 		</div>
 	);
 };

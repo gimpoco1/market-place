@@ -15,14 +15,14 @@ const Product = async ({ params }: { params: IParams }) => {
   const user = await getCurrentUser();
 
   if (!product) {
-    return <NullData title="Oops! Product with the given id does not exist." />;
+    return <NullData title="Product with the given id does not exist." />;
   }
 
   return (
-    <div className="p-8">
+    <div className="">
       <Container>
         <ProductDetails product={product} />
-        <div className="mt-20 flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
           <AddRating user={user} product={product} />
           <ListRating product={product} />
         </div>

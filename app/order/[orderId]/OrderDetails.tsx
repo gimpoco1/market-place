@@ -45,8 +45,8 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
             <Status
               text="completed"
               icon={MdDone}
-              bg="bg-teal-200"
-              color="text-teal-700"
+              bg="bg-green-200"
+              color="text-green-700"
             />
           ) : (
             <></>
@@ -67,15 +67,15 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
             <Status
               text="dispatched"
               icon={MdDeliveryDining}
-              bg="bg-purple-200"
-              color="text-purple-700"
+              bg="bg-green-200"
+              color="text-green-700"
             />
           ) : order.deliveryStatus === "delivered" ? (
             <Status
               text="delivered"
               icon={MdDone}
-              bg="bg-green-200"
-              color="text-green-700"
+              bg="bg-purple-200"
+              color="text-black-700"
             />
           ) : (
             <></>

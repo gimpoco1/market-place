@@ -37,12 +37,12 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center rounded-full border border-black-800 shadow-sm mt-8 bg-white relative">
+    <div className="flex items-center rounded-full border border-black-800 shadow-sm mt-8 bg-white relative ">
     <input
       autoComplete="on"
       type="text"
       {...register("searchTerm")}
-      placeholder="Explore Treasure Island"
+      placeholder="Explore Treasure Ireland"
       className="flex-grow py-2 pl-6 pr-12 rounded-full focus:outline-none focus:ring-2 focus:ring-black-300 focus:border-black"
     />
     <button

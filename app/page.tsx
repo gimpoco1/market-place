@@ -15,7 +15,7 @@ export default async function Home({ searchParams }: HomeProps) {
 	const products = await getProducts(searchParams);
 	if (products.length === 0) {
 		return (
-			<NullData title="Oops! No products found. Click 'All' to clear filters" />
+			<NullData title="No products found. Click 'All' to clear filters" />
 		);
 	}
 
@@ -28,6 +28,7 @@ export default async function Home({ searchParams }: HomeProps) {
 	}
 
 	const shuffledProducts = shuffleArray(products);
+	
 	return (
 		<main className="p-8">
 			<Container>

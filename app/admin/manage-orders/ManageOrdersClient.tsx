@@ -49,11 +49,11 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
 	}
 
 	const columns: GridColDef[] = [
-		{ field: "id", headerName: "ID", width: 220 },
-		{ field: "customer", headerName: "Customer Name", width: 130 },
+		{ field: "id", headerName: "ID", width: 120 },
+		{ field: "customer", headerName: "Customer Name", width: 170 },
 		{
 			field: "amount",
-			headerName: "Amount(EUR)",
+			headerName: "Amount",
 			width: 130,
 			renderCell: (params) => {
 				return (
@@ -114,8 +114,8 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
 							<Status
 								text="delivered"
 								icon={MdDone}
-								bg="bg-green-200"
-								color="text-green-700"
+								bg="bg-purple-200"
+								color="text-black-700"
 							/>
 						) : (
 							<></>
@@ -140,14 +140,15 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
 							icon={MdDeliveryDining}
 							disabled={params.row.paymentStatus === "pending"}
 							onClick={() => {
-								handleDispatch(params.row.id);
+								handleDispatch(params.row.id , params.row.deliveryStatus);
+								
 							}}
 						/>
 						<ActionBtn
 							icon={MdDone}
 							disabled={params.row.paymentStatus === "pending"}
 							onClick={() => {
-								handleDeliver(params.row.id);
+								handleDeliver(params.row.id, params.row.deliveryStatus);
 							}}
 						/>
 						<ActionBtn
@@ -161,43 +162,77 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
 	];
 
 	const handleDispatch = useCallback(
-		(id: string) => {
-			axios
-				.put("/api/order", {
-					id,
-					deliveryStatus: "dispatched",
-				})
-				.then((res) => {
-					toast.success("Order Dispatched");
-					router.refresh();
-				})
-				.catch((err) => {
-					toast.error("Something went wrong");
-					console.log(err);
-				});
+		(id: string, currentStatus: string) => {
+		  const newStatus = currentStatus === "dispatched" ? "pending" : "dispatched";
+	  
+		  axios
+			.put("/api/order", {
+			  id,
+			  deliveryStatus: newStatus,
+			})
+			.then((res) => {
+			  toast.success(`Order ${newStatus}`);
+			  router.refresh();
+			})
+			.catch((err) => {
+			  toast.error("Something went wrong");
+			  console.log(err);
+			});
 		},
 		[router]
-	);
+	  );
 
-	const handleDeliver = useCallback(
-		(id: string) => {
-			axios
-				.put("/api/order", {
-					id,
-					deliveryStatus: "delivered",
-				})
-				.then((res) => {
-					toast.success("Order Delivered");
-					router.refresh();
-				})
-				.catch((err) => {
-					toast.error("Oops! Something went wrong");
-					console.log(err);
-				});
+	  const handleDeliver = useCallback(
+		(id: string, currentStatus: string) => {
+		  const newStatus = currentStatus === "delivered" ? "pending" : "delivered";
+	  
+		  axios
+			.put("/api/order", {
+			  id,
+			  deliveryStatus: newStatus,
+			})
+			.then((res) => {
+			  toast.success(`Order ${newStatus}`);
+			  router.refresh();
+			})
+			.catch((err) => {
+			  toast.error("Oops! Something went wrong");
+			  console.log(err);
+			});
 		},
 		[router]
-	);
+	  );
 
+	  const handleBulkStatusUpdate = useCallback(
+		(id: string, currentStatus: string) => {
+			const newStatus = currentStatus === "delivered" ? "pending" : "delivered";
+		
+			axios
+			  .put("/api/order", {
+				id,
+				deliveryStatus: newStatus,
+			  })
+			  .then((res) => {
+				toast.success(`Order ${newStatus}`);
+				router.refresh();
+			  })
+			  .catch((err) => {
+				toast.error("Oops! Something went wrong");
+				console.log(err);
+			  });
+		  },
+		  [router]
+		);
+	
+	  const handleBulkDispatch = useCallback(() => {
+		handleBulkStatusUpdate("dispatched", "deliveryStatus");
+	  }, [handleBulkStatusUpdate]);
+	
+	  const handleBulkDeliver = useCallback(() => {
+		handleBulkStatusUpdate("delivered", "deliveryStatus");
+	  }, [handleBulkStatusUpdate]);
+	
+	  
 	return (
 		<div className="max-w-[1150px] m-auto text-xl">
 			<div className="mb-4 mt-8">
@@ -217,7 +252,10 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
 					disableRowSelectionOnClick
 				/>
 			</div>
+			{/* <button onClick={handleBulkDispatch} >Dispatch Selected</button>
+    <button onClick={handleBulkDeliver} >Deliver Selected</button> */}
 		</div>
+
 	);
 };
 

@@ -111,8 +111,8 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
               <Status
                 text="delivered"
                 icon={MdDone}
-                bg="bg-green-200"
-                color="text-green-700"
+                bg="bg-purple-200"
+                color="text-black-700"
               />
             ) : (
               <></>

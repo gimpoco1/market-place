@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { MdCheckCircle } from "react-icons/md";
+import AddRating from "./AddRating";
 
 export type CartProduct = {
 	id: string;

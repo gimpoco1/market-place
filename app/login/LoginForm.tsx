@@ -47,7 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = ({currentUser}) => {
 			setIsLoading(false);
 
 			if (callback?.ok) {
-				router.push("/cart");
+				router.push("/");
 				router.refresh();
 				toast.success("Logged in successfully");
 			}
@@ -64,7 +64,7 @@ const LoginForm: React.FC<LoginFormProps> = ({currentUser}) => {
 
 	return (
 		<>
-			<Heading title="Sign in to Trasure Island" />
+			<Heading title="Sign in to Treasure Ireland" />
 			<Button
 				outline
 				label="Continue with Google"
