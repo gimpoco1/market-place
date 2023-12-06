@@ -8,16 +8,16 @@ import Button from "../components/Button";
 import Link from "next/link";
 import { AiOutlineGoogle } from "react-icons/ai";
 import axios from "axios";
-import toast from "react-hot-toast";
+import {toast} from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SafeUser } from "@/types";
 
-interface RegisterFormProps {
+interface RegisterUserProps {
 	currentUser: SafeUser | null;
 }
 
-const RegisterForm: React.FC<FieldValues> = ({ currentUser }) => {
+const RegisterForm: React.FC<RegisterUserProps> = ({ currentUser }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const {
 		register,
@@ -38,7 +38,7 @@ const RegisterForm: React.FC<FieldValues> = ({ currentUser }) => {
 			router.push("/cart");
 			router.refresh();
 		}
-	}, []);
+	}, [ currentUser, router]);
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		setIsLoading(true);
@@ -53,6 +53,8 @@ const RegisterForm: React.FC<FieldValues> = ({ currentUser }) => {
 					password: data.password,
 					redirect: false,
 				}).then((callback) => {
+					setIsLoading(false);
+
 					if (callback?.ok) {
 						router.push("/cart");
 						router.refresh();
@@ -75,7 +77,7 @@ const RegisterForm: React.FC<FieldValues> = ({ currentUser }) => {
 
 	return (
 		<>
-			<Heading title="Sign up for Trasure Island" />
+			<Heading title="Sign up for Treasure Ireland" />
 			<Button
 				outline
 				label="Continue with Google"

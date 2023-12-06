@@ -47,7 +47,7 @@ export const products = [
 				productId: "64a4ebe300900d44bb50628a",
 				rating: 5,
 				comment: "good",
-				createdDate: "2023-07-06T06:08:33.067Z",
+				createDate: "2023-07-06T06:08:33.067Z",
 				user: {
 					id: "6475af156bad4917456e6e1e",
 					name: "Charles",
@@ -56,7 +56,7 @@ export const products = [
 					image:
 						"https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c",
 					hashedPassword: null,
-					createdAt: "2023-05-30T08:08:53.979Z",
+					createAt: "2023-05-30T08:08:53.979Z",
 					updatedAt: "2023-05-30T08:08:53.979Z",
 					role: "ADMIN",
 				},
@@ -100,7 +100,7 @@ export const products = [
 				rating: 4,
 				comment:
 					"good enough. I like the camera and casing. the delivery was fast too.",
-				createdDate: "2023-06-26T15:53:44.483Z",
+				createDate: "2023-06-26T15:53:44.483Z",
 				user: {
 					id: "6499b184b0e9a8c8709821d3",
 					name: "Chaoo",
@@ -109,7 +109,7 @@ export const products = [
 					image:
 						"https://lh3.googleusercontent.com/a/AAcHTtcuRLwWi1vPKaQOcJlUurlhRAIIq2LgYccE8p32=s96-c",
 					hashedPassword: null,
-					createdAt: "2023-06-26T15:40:52.558Z",
+					createAt: "2023-06-26T15:40:52.558Z",
 					updatedAt: "2023-06-26T15:40:52.558Z",
 					role: "USER",
 				},
@@ -120,7 +120,7 @@ export const products = [
 				productId: "648437b38c44d52b9542e340",
 				rating: 5,
 				comment: "I really liked it!!",
-				createdDate: "2023-06-26T14:30:40.998Z",
+				createDate: "2023-06-26T14:30:40.998Z",
 				user: {
 					id: "6475af156bad4917456e6e1e",
 					name: "Charles",
@@ -129,7 +129,7 @@ export const products = [
 					image:
 						"https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c",
 					hashedPassword: null,
-					createdAt: "2023-05-30T08:08:53.979Z",
+					createAt: "2023-05-30T08:08:53.979Z",
 					updatedAt: "2023-05-30T08:08:53.979Z",
 					role: "ADMIN",
 				},

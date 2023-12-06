@@ -8,7 +8,7 @@ import Button from "../components/Button";
 import Link from "next/link";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { signIn } from "next-auth/react";
-import toast from "react-hot-toast";
+import {toast} from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { SafeUser } from "@/types";
 
@@ -36,7 +36,7 @@ const LoginForm: React.FC<LoginFormProps> = ({currentUser}) => {
 			router.push("/cart");
 			router.refresh();
 		}
-	}, []);
+	}, [ currentUser, router]);
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		setIsLoading(true);
@@ -47,7 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = ({currentUser}) => {
 			setIsLoading(false);
 
 			if (callback?.ok) {
-				router.push("/cart");
+				router.push("/");
 				router.refresh();
 				toast.success("Logged in successfully");
 			}
@@ -64,7 +64,7 @@ const LoginForm: React.FC<LoginFormProps> = ({currentUser}) => {
 
 	return (
 		<>
-			<Heading title="Sign in to Trasure Island" />
+			<Heading title="Sign in to Treasure Ireland" />
 			<Button
 				outline
 				label="Continue with Google"
@@ -75,31 +75,32 @@ const LoginForm: React.FC<LoginFormProps> = ({currentUser}) => {
 			<hr className="bg-slate-300 w-full h-px" />
 
 			<Input
-				id="email"
-				label="Email"
-				disabled={isLoading}
-				register={register}
-				errors={errors}
-				required
-			/>
-			<Input
-				id="password"
-				label="Password"
-				disabled={isLoading}
-				register={register}
-				errors={errors}
-				required
-				type="password"
-			/>
-			<Button
-				label={isLoading ? "Loading" : "Log In"}
-				onClick={handleSubmit(onSubmit)}
-			/>
-			<p className="text-sm">
-				Do not have an account?{" "}
-				<Link className="underline" href="/register">
-					Sign Up
-				</Link>
+        id="email"
+        label="Email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+        type="email"
+      ></Input>
+      <Input
+        id="password"
+        label="Password"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+        type="password"
+      ></Input>
+      <Button
+        label={isLoading ? "Loading..." : "Login"}
+        onClick={handleSubmit(onSubmit)}
+      />
+      <p className="text-sm">
+        Do not have an account?{" "}
+        <Link className="underline" href="/register">
+          Sign Up
+        </Link>
 			</p>
 		</>
 	);
