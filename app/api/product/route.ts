@@ -21,6 +21,7 @@ export async function POST(request: Request) {
             category,
             inStock,
             images,
+            selectedImg: images[0],
         },
     });
    

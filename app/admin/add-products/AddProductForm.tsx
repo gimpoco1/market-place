@@ -59,9 +59,20 @@ const AddProductForm = () => {
 		},
 	});
 
+	const setCustomValue = useCallback(
+		(id: string, value: any) => {
+			setValue(id, value, {
+				shouldValidate: true,
+				shouldDirty: true,
+				shouldTouch: true,
+			});
+		},
+		[setValue]
+	);
+
 	useEffect(() => {
 		setCustomValue("images", images);
-	}, [images]);
+	}, [images, setCustomValue]);
 
 	useEffect(() => {
 		if (isProductCreated) {
@@ -69,15 +80,7 @@ const AddProductForm = () => {
 			setImages(null);
 			setIsProductCreated(false);
 		}
-	}, [isProductCreated]);
-
-	const setCustomValue = (id: string, value: any) => {
-		setValue(id, value, {
-			shouldValidate: true,
-			shouldDirty: true,
-			shouldTouch: true,
-		});
-	};
+	}, [isProductCreated, reset]);
 
 	const category = watch("category");
 
