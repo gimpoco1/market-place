@@ -5,8 +5,7 @@ import HomeBanner from "./components/HomeBanner";
 import ProductCard from "./components/products/ProductCard";
 import getProducts, { IProductParams } from "@/actions/getProducts";
 import NullData from "./components/NullData";
-import { products } from "@/utils/products";
-import { truncateText } from "@/utils/truncateText";
+
 
 interface HomeProps {
 	searchParams: IProductParams;

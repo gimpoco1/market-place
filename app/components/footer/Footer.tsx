@@ -10,7 +10,7 @@ import {
 
 const Footer = () => {
 	return (
-		<footer className=" bg-custom-color text-slate-200 text-sm mt-16">
+		<footer className=" bg-custom-color-2 text-slate-200 text-sm mt-16">
 			<Container>
 				<div className="flex flex-col md:flex-row justify-between pt-16 pb-8">
 					<FooterList>

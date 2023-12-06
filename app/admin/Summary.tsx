@@ -5,6 +5,7 @@ import Heading from "../components/Heading";
 import { formatPrice } from "@/utils/formatPrice";
 import { Order, Product, User } from "@prisma/client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface SummaryProps {
   orders: Order[];
@@ -76,6 +77,7 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
   }, [orders, products, users]);
 
   let summaryKeys = Object.keys(summaryData);
+  const router = useRouter();
 
   return (
     <div className="max-w-[1150px] m-auto">
@@ -86,17 +88,35 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
         {summaryKeys &&
           summaryKeys.map((key) => (
             <div
-              key={key}
-              className="
-            rounded-xl
-            border-2
-            p-4
-            flex
-            flex-col
-            items-center
-            gap-2
-            transition
-            "
+            key={key}
+            className={`
+              rounded-xl
+              border-2
+              p-4
+              flex
+              flex-col
+              items-center
+              gap-2
+              transition
+              ${summaryData[key].label === "Total Products" ||
+              summaryData[key].label === "Total Users" ||
+              summaryData[key].label === "Total Orders"
+                ? "cursor-pointer"
+                : ""}
+            `}
+            onClick={() => {
+              if (summaryData[key].label === "Total Products") {
+                router.push("/admin/manage-products");
+              }
+              if (summaryData[key].label === "Total Users") {
+                router.push("/admin/manage-users");
+              }
+              if (summaryData[key].label === "Total Orders") {
+                router.push("/admin/manage-orders");
+              }
+            }}
+           
+
             >
               <div className="text-xl md:text-4xl font-bold">
                 {summaryData[key].label === "Total Sale" ? (
