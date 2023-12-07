@@ -100,7 +100,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 		product.reviews.length;
 
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+		<div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-5">
 			<ProductImage
 				cartProduct={cartProduct}
 				product={product}
