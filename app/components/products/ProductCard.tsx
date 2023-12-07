@@ -8,26 +8,26 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
-  data: Product & {
-    reviews: Review[];
-  };
-  shuffledProducts: Product[];
+	data: Product & {
+		reviews: Review[];
+	};
+	shuffledProducts: Product[];
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  data,
-  shuffledProducts,
+	data,
+	shuffledProducts,
 }) => {
-  const router = useRouter();
+	const router = useRouter();
 
-  const ProductRating =
-    data.reviews.reduce((acc, item) => item.rating + acc, 0) /
-    data.reviews.length;
+	const ProductRating =
+		data.reviews.reduce((acc, item) => item.rating + acc, 0) /
+		data.reviews.length;
 
-  return (
-    <div
-      onClick={() => router.push(`/product/${data.id}`)}
-      className="
+	return (
+		<div
+			onClick={() => router.push(`/product/${data.id}`)}
+			className="
         col-span-1
         cursor-pointer
         border-[1.2px]
@@ -40,34 +40,40 @@ const ProductCard: React.FC<ProductCardProps> = ({
         text-center
         text-sm
       "
-    >
-      <div className="flex flex-col items-center w-full gap-1">
-        <div
-          className="
+		>
+			<div className="flex flex-col items-center w-full gap-1">
+				<div
+					className="
             aspect-square
             overflow-hidden
             relative
             w-full
             "
-        >
-          <Image
-            fill
-            className="
+				>
+					<Image
+						fill
+						className="
             w-full
             h-full
             object-contain
             "
-            src={data.images[0].image}
-            alt={data.name}
-          />
-        </div>
-        <div className="mt-4">{truncateText(data.name)}</div>
-        <Rating value={ProductRating} readOnly />
-        <div>{data.reviews.length} reviews</div>
-        <div className="font-semibold">{formatPrice(data.price)}</div>
-      </div>
-    </div>
-  );
+						src={data.images[0].image}
+						alt={data.name}
+					/>
+				</div>
+				<div className="mt-4">{truncateText(data.name)}</div>
+				<Rating
+					value={ProductRating}
+					name="half-rating"
+					defaultValue={2.5}
+					precision={0.5}
+					readOnly
+				/>
+				<div>{data.reviews.length} reviews</div>
+				<div className="font-semibold">{formatPrice(data.price)}</div>
+			</div>
+		</div>
+	);
 };
 
 export default ProductCard;
