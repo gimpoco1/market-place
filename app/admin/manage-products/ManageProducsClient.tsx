@@ -76,8 +76,8 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
 							<Status
 								text="in stock"
 								icon={MdDone}
-								bg="bg-teal-200"
-								color="text-teal-700"
+								bg="bg-green-200"
+								color="text-green-700"
 							/>
 						) : (
 							<Status

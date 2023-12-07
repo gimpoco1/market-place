@@ -15,13 +15,12 @@ const Footer = () => {
 				<div className="flex flex-col md:flex-row justify-between pt-16 pb-8">
 					<FooterList>
 						<h3 className="text-base font-bold mb-2">Shop Categories</h3>
-						<Link href="#">Smart Watches</Link>
-						<Link href="#">CCTV Security Cameras</Link>
-						<Link href="#">LCD Projectors</Link>
-						<Link href="#">Car accessories</Link>
-						<Link href="#">Home & Leisure</Link>
-						<Link href="#">Phone Accessories</Link>
-						<Link href="#">Gift Ideas</Link>
+                        <Link href="/?category=CCTV%20Cameras">CCTV Security Cameras</Link>
+                        <Link href="/?category=LCD%20Projectors">LCD Projectors</Link>
+                        <Link href="/?category=Car%20Accessories">Car accessories</Link>
+						<Link href="/?category=Sport%20Watches">Sport Watches</Link>
+                        <Link href="/?category=Home%20%26%20Leisure">Home & Leisure</Link>
+                        <Link href="/?category=Gift%20Ideas">Gift Ideas</Link>
 					</FooterList>
 					<FooterList>
 						<h3 className="text-base font-bold mb-2">Customer Service</h3>
@@ -38,7 +37,7 @@ const Footer = () => {
 							provide full assistance for any purchase.
 						</p>
 						<p>
-							&copy; {new Date().getFullYear()} Treasure Island. All rights
+							&copy; {new Date().getFullYear()} Treasure Ireland. All rights
 							reserved.
 						</p>
 					</div>

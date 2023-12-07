@@ -20,14 +20,14 @@ export async function POST(request: Request) {
 	const currentUser = await getCurrentUser();
   
 	if (!currentUser) {
-	  return NextResponse.json({ error: " Unauthorized" }, { status: 401 });
+	  return NextResponse.error()
 	}
   
 	let body;
 	try {
 	  body = await request.json();
 	} catch (error) {
-	  return NextResponse.json({ error: "Invalid JSON input" }, { status: 400 });
+	  return NextResponse.error()
 	}
 	const { items, payment_intent_id , selectedImg} = body;
 	const total = calculateOrderAmount(items) * 100;
@@ -43,7 +43,6 @@ export async function POST(request: Request) {
 	  selectedImg: selectedImg
 	};
   
-	console.log("orderData", orderData);
 	//Check if the payment intent exists just update the order
 	if (payment_intent_id) {
 	  const current_intent = await stripe.paymentIntents.retrieve(
@@ -70,10 +69,7 @@ export async function POST(request: Request) {
 		]);
   
 		if (!existing_order) {
-		  return NextResponse.json(
-			{ error: "Invalid Payment Intent" },
-			{ status: 400 }
-		  );
+		  return NextResponse.error()
 		}
 		return NextResponse.json({ paymentIntent: updated_intent });
 	  }
