@@ -36,10 +36,7 @@ export default async function handler(
     return res.status(400).send("Webook error" + err);
   }
   switch (event.type) {
-    case "payment_intent.created":
-      const paymentIntent = event.data.object;
-      console.log("Payment intent was created");
-      break;
+
     case "charge.succeeded":
       const charge: any = event.data.object as Stripe.Charge;
       if (typeof charge.payment_intent === "string") {
