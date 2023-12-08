@@ -25,7 +25,7 @@ git clone market-place
 cd market-place
 npm install
 
-## Note: You will need your own environment variables for authentication and payments.
+### Note: You will need your own environment variables for authentication and payments.
 
-Contributing
+## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
