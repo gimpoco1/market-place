@@ -1,5 +1,5 @@
 interface NullDataProps {
-	title: string;
+	title: string | JSX.Element;
 }
 
 const NullData: React.FC<NullDataProps> = ({ title }) => {

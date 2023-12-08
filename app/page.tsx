@@ -6,6 +6,7 @@ import HomeBanner from "./components/HomeBanner";
 import ProductCard from "./components/products/ProductCard";
 import getProducts, { IProductParams } from "@/actions/getProducts";
 import NullData from "./components/NullData";
+import Link from "next/link";
 
 
 interface HomeProps {
@@ -16,7 +17,7 @@ export default async function Home({ searchParams }: HomeProps) {
 	const products = await getProducts(searchParams);
 	if (products.length === 0) {
 		return (
-			<NullData title="No products found. Click 'All' to clear filters" />
+			<NullData title={<span>No products found.Click <Link href="/"> here </Link>to clear filters</span>} />
 		);
 	}
 
