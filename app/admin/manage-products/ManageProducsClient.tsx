@@ -17,6 +17,7 @@ import {
 	MdClose,
 	MdDelete,
 	MdDone,
+	MdEdit,
 	MdRemoveRedEye,
 } from "react-icons/md";
 
@@ -116,12 +117,24 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
 								router.push(`/product/${params.row.id}`);
 							}}
 						/>
+						<ActionBtn
+                    icon={MdEdit}
+                    onClick={() => {
+                        handleEdit(params.row.id);
+                    }}
+                />
 					</div>
 				);
 			},
 		},
 	];
-
+	const handleEdit = useCallback(
+		(id: string) => {
+			router.push(`/admin/edit-product/${id}`);
+		},
+		[router],
+	);
+	
 	const handleToggleStock = useCallback(
 		(id: string, inStock: boolean) => {
 			axios
