@@ -6,7 +6,7 @@ import Input from "../components/inputs/Input";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import Button from "../components/Button";
 import Link from "next/link";
-import { AiOutlineGoogle } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import {toast} from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -68,7 +68,7 @@ const LoginForm: React.FC<LoginFormProps> = ({currentUser}) => {
 			<Button
 				outline
 				label="Continue with Google"
-				icon={AiOutlineGoogle}
+				icon={FcGoogle}
 				onClick={() => {signIn("google")}
 				}
 			/>
