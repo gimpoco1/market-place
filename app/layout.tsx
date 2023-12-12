@@ -6,6 +6,8 @@ import Footer from "./components/footer/Footer";
 import CartProvider from "@/providers/CartProvider";
 import { Toaster } from "react-hot-toast";
 import getCurrentUser from "../actions/getCurrentUser";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });

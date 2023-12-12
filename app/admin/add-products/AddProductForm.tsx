@@ -150,6 +150,7 @@ const AddProductForm = () => {
 		};
 
 		await handleImageUploads();
+		
 		const productData = { ...data, images: uploadedImages };
 
 		axios

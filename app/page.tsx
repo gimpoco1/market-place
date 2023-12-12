@@ -34,7 +34,7 @@ export default async function Home({ searchParams }: HomeProps) {
 	return (
 		<main className="p-8">
 			<Container>
-				<div>
+				<div className="pb-10">
 					<HomeBanner />
 				</div>
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl-grid-cols-5 2xl:grid-cols-6 gap-8">

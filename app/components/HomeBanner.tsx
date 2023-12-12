@@ -1,31 +1,71 @@
+"use client";
+
+import Slider from "react-slick";
+import bannersix from "@/public/bannersix.jpg";
+import bannerseven from "@/public/bannerseven.jpg";
+import bannereight from "@/public/bannereight.jpg";
+
+import bannerten from "@/public/bannerten.jpeg";
 import Image from "next/image";
+import BannerText from "./BannerText";
 
 const HomeBanner = () => {
+	var settings = {
+		dots: false,
+		infinite: true,
+		speed: 800,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		autoplay: true,
+		autoplaySpeed: 3500,
+	};
+
 	return (
-		<div className="relative bg-gradient-to-r from-orange-500 to-orange-700 mb-8">
-			<div className="mx-auto px-8 py-12 flex flex-col md:flex-row items-center justify-evenly">
-				<div className="text-center md:mb-0 md:w-2/3">
-					<h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-						Winter Sale
-					</h1>
-					<p className="text-lg md:text-xl text-white mb-2">
-						Enjoy discounts on selected items
-					</p>
-					<p className="text-2xl md:text-5xl text-yellow-400 font-bold">
-						get 50% OFF
-					</p>
-				</div>
-				<div className="w-full md:w-1/3 relative aspect-video">
+		<div className="relative">
+			<Slider {...settings}>
+				<div className="w-full h-full relative">
 					<Image
-						src="/banner-image.png"
-						fill
+						src={bannersix}
+						alt="bannersix"
+						className="w-full h-full relative"
 						priority
-						sizes="100%"
-						alt="Banner Image"
-						className="object-contain"
+					/>
+					<BannerText
+						title="Electronics & Home Sale"
+						description="Save up to 50%"
 					/>
 				</div>
-			</div>
+				<div className="w-full h-full relative">
+					<Image
+						src={bannereight}
+						alt="bannereight"
+						className="w-full h-full relative"
+					/>
+					{/* <BannerText title="New Trends, Low Prices" description="Big Discounts & Best Choices" /> */}
+				</div>
+				<div className="w-full h-full relative">
+					<Image
+						src={bannerseven}
+						alt="bannerseven"
+						className="w-full h-full relative"
+						priority
+					/>
+					<BannerText
+						title="Must-have Styles"
+						description="AT INCREDIBLY LOW PRICES"
+					/>
+				</div>
+
+				<div className="w-full h-full relative">
+					<Image
+						src={bannerten}
+						alt="bannerten"
+						className="w-full h-full relative"
+					/>
+					{/* <BannerText title="New Trends, Low Prices" description="Big Discounts & Best Choices" /> */}
+				</div>
+			</Slider>
+			<div className="absolute w-full h-20 bg-gradient-to-t from-white to-transparent bottom-0 left-0" />
 		</div>
 	);
 };
