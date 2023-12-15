@@ -16,7 +16,7 @@ export async function POST(request: Request) {
   const deliveredOrder = currentUser?.orders.some(
     (order) =>
       order.products.find((item) => item.id === product.id) &&
-      order.deliveryStatus === "delivered"
+      order.deliveryStatus === "pending"
   );
 
   const userReview = product?.reviews.find((review: Review) => {

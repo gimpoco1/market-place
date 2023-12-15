@@ -36,23 +36,23 @@ const SearchBar = () => {
     reset();
   };
 
-  return (
-    <div className="flex items-center rounded-full border border-black-800 shadow-sm mt-8 bg-white relative ">
+return (
+  <form onSubmit={handleSubmit(onSubmit)} className="flex items-center rounded-full border border-black-800 shadow-sm mt-8 bg-white relative ">
     <input
-      autoComplete="on"
+      autoComplete="off"
       type="text"
       {...register("searchTerm")}
       placeholder="Explore Treasure Ireland"
       className="flex-grow py-2 pl-6 pr-12 rounded-full focus:outline-none focus:ring-2 focus:ring-black-300 focus:border-black"
     />
     <button
-      onClick={handleSubmit(onSubmit)}
+      type="submit"
       className="absolute right-0 mr-3 text-black flex items-center justify-center"
     >
       <TfiSearch />
     </button>
-  </div>
-  );
+  </form>
+);
 };
 
 export default SearchBar;

@@ -6,7 +6,7 @@ import Input from "../components/inputs/Input";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import Button from "../components/Button";
 import Link from "next/link";
-import { AiOutlineGoogle } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import {toast} from "react-hot-toast";
 import { signIn } from "next-auth/react";
@@ -51,7 +51,7 @@ const RegisterForm: React.FC<RegisterUserProps> = ({ currentUser }) => {
 				signIn("credentials", {
 					email: data.email,
 					password: data.password,
-					redirect: false,
+					redirect: true,
 				}).then((callback) => {
 					setIsLoading(false);
 
@@ -81,7 +81,7 @@ const RegisterForm: React.FC<RegisterUserProps> = ({ currentUser }) => {
 			<Button
 				outline
 				label="Continue with Google"
-				icon={AiOutlineGoogle}
+				icon={FcGoogle}
 				onClick={() => {signIn("google")}
 				}
 			/>

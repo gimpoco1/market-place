@@ -8,11 +8,12 @@ import Category from "./Category";
 const Categories = () => {
   const params = useSearchParams();
   const category = params?.get("category");
-  const pathname = usePathname();
+  const pathname:any = usePathname();
 
-  const isMainPage = pathname === "/";
-
-  if (!isMainPage) return null;
+  const isMainPage = pathname === "/" 
+  const isProductPage = pathname.startsWith("/product/");
+  const isCartPage = pathname === "/cart";
+  if (!isMainPage && !isProductPage && !isCartPage) return null;
 
   return (
     <div className="bg-white">
